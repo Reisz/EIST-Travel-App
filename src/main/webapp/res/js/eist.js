@@ -1,34 +1,94 @@
 //Map display functionality
 var map = L.map('map')
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+L
+		.tileLayer(
+				'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+				{
+					attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+				}).addTo(map);
 
-$(document).ready(function(){
-  resizeMap();
-  map.setView([48.137222222222, 11.575555555556], 13);
+$(document).ready(function() {
+	resizeMap();
+	map.setView([ 48.137222222222, 11.575555555556 ], 13);
 });
 window.onresize = function(event) {
 	resizeMap();
 }
 
 function resizeMap() {
-	vph = $(window
-  ).height() - 50;
-	$('#map').css({'height': vph + 'px'});
+	vph = $(window).height() - 50;
+	$('#map').css({
+		'height' : vph + 'px'
+	});
 }
 
+// Find Route Modal
+$('#findRouteModal').on('show.bs.modal', function() {
+	$('.main').addClass('blurry');
+});
+$('#findRouteModal').on('shown.bs.modal', function() {
+	$('#origin').focus();
+});
+$('#findRouteModal').on('hide.bs.modal', function() {
+	$('.main').removeClass('blurry');
+});
 
-//Find a Route Modal
-$('#findRouteModal').on('show.bs.modal', function () {
-	$('#map').toggleClass('blurry', true);
-});
-$('#findRouteModal').on('shown.bs.modal', function () {
-  //$('#myInput').focus();
-});
-$('#findRouteModal').on('hide.bs.modal', function () {
-	$('#map').toggleClass('blurry', false);
+// ripples
+$('.ripple').on('click',function(event) {
+	event.preventDefault();
+
+	var $div = $('<div/>'), btnOffset = $(this)
+			.offset(), xPos = event.pageX
+			- btnOffset.left, yPos = event.pageY
+			- btnOffset.top;
+
+	$div.addClass('ripple-effect');
+	var $ripple = $(".ripple-effect");
+
+	$ripple.css("height", $(this).height());
+	$ripple.css("width", $(this).height());
+	$div.css({
+		top : yPos - ($ripple.height() / 2),
+		left : xPos - ($ripple.width() / 2),
+		background : "#C5CAE9"
+	}).appendTo($(this));
+
+	window.setTimeout(function() {
+		$div.remove();
+	}, 2000);
 });
 
-//debug
+$('.ripple-fixed').on('mousedown',function(event) {
+	event.preventDefault();
+
+	var $div = $('<div/>');
+	$div.addClass('ripple-effect-fixed');
+	var $ripple = $(".ripple-effect-fixed");
+
+	$ripple.css("height", $(this).height());
+	$ripple.css("width", $(this).height());
+	$div.css({
+		top : -($ripple.height() / 2),
+		left : -($ripple.width() / 2),
+		background : "#C5CAE9"
+	}).appendTo($(this));
+
+	window.setTimeout(function() {
+		$div.remove();
+	}, 250);
+});
+
+//interactive form icons
+$("label").each(function() {
+	var input = $("#" + $(this).attr("for"));
+	var label = $(this)
+	input.focusin(function(e) {
+		label.addClass("focus");
+	});
+	input.focusout(function(e) {
+		label.removeClass("focus");
+	});
+});
+
+// debug
 $('#findRouteModal').modal('show');

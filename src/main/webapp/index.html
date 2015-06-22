@@ -1,42 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>EIST Travel App</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-	
-	<link rel="stylesheet" href="./res/css/eist.css">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>EIST Travel App</title>
+
+<link href="//fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Roboto:500,700,400'
+	rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+
+<link rel="stylesheet" href="./res/css/eist.css">
 </head>
 <body>
-	<nav class="navbar navbar-fixed-top">
-		<div class="container-fluid">
-      <a class="navbar-brand" href="#" data-toggle="modal" data-target="#findRouteModal">EIST Travel App</a>
-		</div>
-	</nav>
+	<div class="main">
+		<nav class="navbar navbar-fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand ripple" href="#" data-toggle="modal"
+					data-target="#findRouteModal">EIST Travel App</a>
+			</div>
+		</nav>
+		<div id="map" style="width: 100%"></div>
+	</div>
 
-	<div id="map" style="width:100%"></div>
-	
-	<div class="modal fade" id="findRouteModal" tabindex="-1" role="dialog" aria-labelledby="frModalLabel">
+	<div class="modal fade" id="findRouteModal" data-backdrop="false"
+		role="dialog" aria-labelledby="frModalLabel">
 		<div class="modal-dialog" role="document">
-		    <div class="modal-content">
+			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close ripple-fixed" data-dismiss="modal"
+						aria-label="Close">
+						<i class="material-icons" aria-hidden="true">&#xE5C4;</i>
+					</button>
 					<h4 class="modal-title" id="frModalLabel">Find a Route</h4>
 				</div>
 				<div class="modal-body">
-					...
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="origin" class="col-xs-1 control-label label-eist"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE88A;</i></label>
+							<div class="col-xs-11">
+								<input type="text" class="form-control form-eist" placeholder="Origin" id="origin">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="destination" class="col-xs-1 control-label label-eist"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE153;</i></label>
+							<div class="col-xs-11">
+								<input type="text" class="form-control form-eist" placeholder="Destination" id="destination">
+							</div>
+						</div>
+					</form>
 				</div>
-		    </div>
- 		</div>
+			</div>
+		</div>
 	</div>
-	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-	
+
 	<script src="./res/js/eist.js"></script>
 </body>
 </html>
