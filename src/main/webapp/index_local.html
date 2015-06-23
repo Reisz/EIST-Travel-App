@@ -50,16 +50,31 @@
 				<div class="modal-body">
 					<form class="form-horizontal">
 						<div class="form-group">
-							<label for="origin" class="col-xs-1 control-label label-eist"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE88A;</i></label>
+							<label for="origin" class="col-xs-1 control-label"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE88A;</i></label>
 							<div class="col-xs-11">
 								<input type="text" class="form-control form-eist" placeholder="Origin" id="origin">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="destination" class="col-xs-1 control-label label-eist"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE153;</i></label>
+							<label for="destination" class="col-xs-1 control-label"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE153;</i></label>
 							<div class="col-xs-11">
 								<input type="text" class="form-control form-eist" placeholder="Destination" id="destination">
 							</div>
+						</div>
+            <hr/>
+						<div class="form-group">
+							<label for="balance" class="col-xs-2 control-label label-eist">Method</label>
+              <div class="dropdown dropdown-eist col-xs-4">
+                <button class="btn btn-default dropdown-toggle dropdown-eist" type="button" id="balance" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Balanced
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-eist" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">Cheapest</a></li>
+                  <li><a class="active" href="#">Balanced</a></li>
+                  <li><a href="#">Fastest</a></li>
+                </ul>
+              </div>
 						</div>
 					</form>
 				</div>

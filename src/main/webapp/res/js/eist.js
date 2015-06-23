@@ -34,7 +34,7 @@ $('#findRouteModal').on('hide.bs.modal', function() {
 });
 
 // ripples
-$('.ripple').on('click',function(event) {
+$('.ripple').on('mousedown',function(event) {
 	event.preventDefault();
 
 	var $div = $('<div/>'), btnOffset = $(this)
@@ -88,6 +88,20 @@ $("label").each(function() {
 	input.focusout(function(e) {
 		label.removeClass("focus");
 	});
+});
+
+//dropdowns
+$(".dropdown.dropdown-eist").on("show.bs.dropdown", function() {
+  var menu = $(this).children(".dropdown-menu");
+  var offset = menu.children(":has(.active)").index() * 30;
+  menu.css({"top": "-" + (5 + offset) + "px"});
+});
+
+
+$(".dropdown-menu.dropdown-eist").on("click", "li", function() {
+  $(this).parent().parent().children(".dropdown-toggle").get(0).firstChild.nodeValue = $(this).children().first().text();
+  $(this).parent().children(":has(.active)").children().first().removeClass("active");
+  $(this).children().first().addClass("active");
 });
 
 // debug
