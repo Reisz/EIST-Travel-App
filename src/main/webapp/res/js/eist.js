@@ -50,7 +50,7 @@ $('.ripple').on('mousedown',function(event) {
 	$div.css({
 		top : yPos - ($ripple.height() / 2),
 		left : xPos - ($ripple.width() / 2),
-		background : "#C5CAE9"
+		background : "#fff"
 	}).appendTo($(this));
 
 	window.setTimeout(function() {
@@ -70,7 +70,7 @@ $('.ripple-fixed').on('mousedown',function(event) {
 	$div.css({
 		top : -($ripple.height() / 2),
 		left : -($ripple.width() / 2),
-		background : "#C5CAE9"
+		background : "#fff"
 	}).appendTo($(this));
 
 	window.setTimeout(function() {
