@@ -179,7 +179,7 @@ input[type=text].form-eist.form-eist {
 	color: rgba(0,0,0,0.87);
 	
 	border: none;
-	border-bottom: 1px solid rgba(0,0,0,0.12);
+	border-bottom: 1px solid rgba(0,0,0,0.26);
 	border-radius: 0;
 	
 	-webkit-box-shadow : none;
@@ -208,22 +208,22 @@ input[type=text].form-eist:focus {
 }
 
 .form-eist::-webkit-input-placeholder {
-    color:    rgba(0,0,0,0.26);
+  color:    rgba(0,0,0,0.26);
 	font-family: "Roboto", sans-serif;
 }
 .form-eist:-moz-placeholder {
-   color:    #000;
-   opacity:  0.26;
-	font-family: "Roboto", sans-serif;
+  color:    #000;
+  opacity:  0.26;
+  font-family: "Roboto", sans-serif;
 }
 .form-eist::-moz-placeholder {
-   	color:    #000;
-   	opacity:  0.26;
-	font-family: "Roboto", sans-serif;
+  color:    #000;
+  opacity:  0.26;
+  font-family: "Roboto", sans-serif;
 }
 .form-eist:-ms-input-placeholder {
-   	color:    rgba(0,0,0,0.26);
-	font-family: "Roboto", sans-serif;
+  color:    rgba(0,0,0,0.26);
+  font-family: "Roboto", sans-serif;
 }
 
 .form-icon-eist {
@@ -244,17 +244,22 @@ input[type=text].form-eist:focus {
   padding-left: 1.5em;
 }
 
+.form-horizontal .control-label.label-eist {
+  padding-top: 4px;
+}
+
 .focus.label-eist {
 	color: #FF80AB;
 }
 
 hr {
   margin-top: 25px;
-  color: rgba(0,0,0,0.12);
+  border-color: rgba(0,0,0,0.12);
 }
 
-.dropdown.dropdown-eist {
-  padding-left: 0;
+.modal-body hr {
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .btn.dropdown-eist {
@@ -262,7 +267,7 @@ hr {
 	color: rgba(0,0,0,0.87);
 	
 	border: none;
-	border-bottom: 1px solid rgba(0,0,0,0.12);
+	border-bottom: 1px solid rgba(0,0,0,0.26);
 	border-radius: 0;
 	
 	font-family: "Roboto", sans-serif;
@@ -281,10 +286,9 @@ hr {
 
 .btn.dropdown-eist:hover {
 	background: none;
-	
-	border: none;
-	border-bottom: 1px solid rgba(0,0,0,0.12);
   
+	border: none;
+	border-bottom: 1px solid rgba(0,0,0,0.26);
 }
 
 .btn.dropdown-eist:focus, .btn.dropdown-eist:active{
@@ -331,4 +335,41 @@ hr {
 }
 
 .dropdown-menu.dropdown-eist>li>a:focus, .dropdown-menu.dropdown-eist>li>a:hover {
+}
+
+input[type=checkbox] {
+  display:none;
+  padding-top: 0;
+}
+
+input[type=checkbox] + label {
+  color: rgba(0,0,0,0.54);
+  font-size: 22px;
+  
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.form-horizontal label.checkbox-inline {
+  padding-top: 0;
+}
+
+input[type=checkbox]:focus + label {
+  color: #FF80AB;
+}
+
+input[type=checkbox] + label:before {
+  font-family: 'Material Icons';
+  display: inline-block;
+  
+  content: "\e835";
+  letter-spacing: 10px;
+}
+
+input[type=checkbox]:checked + label:before {
+  content: "\e834";
 }
