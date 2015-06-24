@@ -31,7 +31,7 @@
 	</div>
 
 	<div class="modal fade" id="findRouteModal" data-backdrop="false"
-		role="dialog" aria-labelledby="frModalLabel">
+		role="dialog" aria-labelledby="frModalLabel" ng-app="findRoute" ng-controller="routeController">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -46,19 +46,19 @@
 						<div class="form-group">
 							<label for="origin" class="col-xs-1 control-label"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE88A;</i></label>
 							<div class="col-xs-11">
-								<input type="text" class="form-control form-eist" placeholder="Origin" id="origin">
+								<input type="text" class="form-control form-eist" placeholder="Origin" id="origin" ng-model="origin" required></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="destination" class="col-xs-1 control-label"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE153;</i></label>
 							<div class="col-xs-11">
-								<input type="text" class="form-control form-eist" placeholder="Destination" id="destination">
+								<input type="text" class="form-control form-eist" placeholder="Destination" id="destination" ng-model="destination" required></input>
 							</div>
 						</div>
             <hr/>
 						<div class="form-group">
 							<label for="balance" class="col-xs-1 control-label"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE8B8;</i></label>
-              <div class="dropdown dropdown-eist col-xs-2">
+              <div combobox ng-model="balance" class="dropdown dropdown-eist col-xs-2">
                 <button class="btn btn-default dropdown-toggle dropdown-eist" type="button" id="balance" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   Balanced
                   <span class="caret"></span>
@@ -70,13 +70,13 @@
                 </ul>
               </div>
               <div class="col-xs-9">
-                <input type="checkbox" id="car" checked></input>
+                <input type="checkbox" id="car" ng-model="car"></input>
                 <label for="car" class="checkbox-inline"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE531;</i></label>
-                <input type="checkbox" id="taxi" checked></input>
+                <input type="checkbox" id="taxi" ng-model="taxi"></input>
                 <label for="taxi" class="checkbox-inline"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE559;</i></label>
-                <input type="checkbox" id="train" checked></input>
+                <input type="checkbox" id="train" ng-model="train"></input>
                 <label for="train" class="checkbox-inline"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE534;</i></label>
-                <input type="checkbox" id="plane" checked></input>
+                <input type="checkbox" id="plane" ng-model="plane"></input>
                 <label for="plane" class="checkbox-inline"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE539;</i></label>
               </div>
 						</div>
@@ -84,7 +84,7 @@
 				</div>
 				<div class="modal-footer">
           <button type="button" class="btn btn-eist-flat ripple" data-dismiss="modal">CANCEL</button>
-          <button type="button" class="btn btn-eist-flat ripple">FIND ROUTE</button>
+          <button type="button" class="btn btn-eist-flat ripple" ng-click="request()">FIND ROUTE</button>
         </div>
 			</div>
 		</div>
@@ -101,5 +101,6 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 
 	<script src="./res/js/eist.js"></script>
+	<script src="./res/js/findRoute.js"></script>
 </body>
 </html>
