@@ -184,7 +184,7 @@ button.close:hover {
 	opacity: 1;
 }
 
-input[type=text].form-eist.form-eist {
+input[type=text].form-eist {
 	background: none;
 	color: rgba(0,0,0,0.87);
 	
@@ -217,7 +217,8 @@ input[type=text].form-eist:focus {
 	box-shadow:none;
 }
 
-input[type=text].form-eist.ng-dirty.ng-invalid {
+input[type=text].form-eist.ng-touched.ng-invalid,
+.ng-submitted input[type=text].form-eist.ng-invalid {
 	background: none;
 	
 	border: none;
@@ -231,9 +232,19 @@ input[type=text].form-eist.ng-dirty.ng-invalid {
 	box-shadow:none;
 }
 
-input[type=text].form-eist.ng-dirty.ng-invalid-required:after {
+input[type=text].form-eist.ng-touched.ng-invalid  ~ .input-text-error,
+.ng-submitted input[type=text].form-eist.ng-invalid  ~ .input-text-error {
   display: block;
-  content: "Required";
+}
+
+.input-text-error {
+  color: #D50000;
+  font-size: 12px;
+  
+  display: none;
+  text-align: right;
+  
+  margin-bottom: -100%;
 }
 
 .form-eist::-webkit-input-placeholder {

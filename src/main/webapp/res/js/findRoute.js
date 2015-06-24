@@ -8,7 +8,13 @@ findRoute.controller("routeController", function($scope, $http, $timeout) {
   $scope.cancel = function () {
     $scope.loading = false;
   };
-  $scope.request = function() {
+  $scope.request = function(form) {
+    //invalid submit
+    if(!form.$valid) {
+      form.$setSubmitted();
+      return;
+    }
+    
     $scope.loading = true;
     serverFindRoute($http, $timeout,
           "/" + $scope.origin

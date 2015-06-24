@@ -9,6 +9,14 @@ import javax.ws.rs.core.Response;
 
 @Path("/findRoute")
 public class FindRoute {
+	
+	/**
+	 * 
+	 * @param origin
+	 * @param destination
+	 * @param balance 0 = cheapest, 1 = balanced, 2 = fastest
+	 * @return
+	 */
 	@GET
 	@Path("/{origin}/{destination}/{balance}")
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
