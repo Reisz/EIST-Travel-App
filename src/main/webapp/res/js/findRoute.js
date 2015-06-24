@@ -1,19 +1,32 @@
 var findRoute = angular.module("findRoute", []);
-findRoute.controller("routeController", function($scope, $http) {
+findRoute.controller("routeController", function($scope, $http, $timeout) {
   $scope.car = true;
   $scope.taxi = true;
   $scope.train = true;
   $scope.plane = true;
+  $scope.loading = false;
+  $scope.cancel = function () {
+    $scope.loading = false;
+  };
   $scope.request = function() {
-    //TODO loadAnimation
-    $http.get("findRoute"
-      + "/" + $scope.origin
-      + "/" + $scope.destination
-      + "/" + $scope.balance)
-    .success(function(response) {
-      console.log(response);
-      //TODO clear load animation
-    });
+    $scope.loading = true;
+    serverFindRoute($http, $timeout,
+          "/" + $scope.origin
+        + "/" + $scope.destination
+        + "/" + $scope.balance,
+      function(response) {
+        if(!$scope.loading) //cancelled
+          return;
+        $scope.loading = false;
+        
+        //do stuff
+        console.log(response);
+      },
+      function() {
+        $scope.loading = false;
+        
+        //error stuff
+      });
   };
 });
 findRoute.directive("combobox", function() {

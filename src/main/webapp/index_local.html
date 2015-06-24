@@ -20,6 +20,15 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
   
 <link rel="stylesheet" href="res/css/eist.css">
+
+<script>
+  function serverFindRoute($http, $timeout, append, callback, errorCallback) {
+    console.log(append);
+    $timeout(function(){
+      callback({});
+    }, 2000);
+  }
+</script>
 </head>
 <body>
 	<div class="main">
@@ -85,8 +94,13 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-          <button type="button" class="btn btn-eist-flat ripple" data-dismiss="modal">CANCEL</button>
-          <button type="button" class="btn btn-eist-flat ripple" ng-click="request()">FIND ROUTE</button>
+          <button type="button" class="btn btn-eist-flat ripple" ng-click="cancel()" data-dismiss="modal">CANCEL</button>
+          <button type="button" class="btn btn-eist-flat ripple" ng-click="request()" ng-disabled="loading">
+            FIND ROUTE
+            <svg class="spinner" ng-hide="!loading" width="14px" height="14px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+              <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+            </svg>
+          </button>
         </div>
 			</div>
 		</div>

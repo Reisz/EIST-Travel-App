@@ -217,6 +217,25 @@ input[type=text].form-eist:focus {
 	box-shadow:none;
 }
 
+input[type=text].form-eist.ng-dirty.ng-invalid {
+	background: none;
+	
+	border: none;
+	border-bottom: 2px solid #D50000;
+	border-radius: 0;
+	
+	padding-bottom: 5px;
+	
+	-webkit-box-shadow : none;
+	-moz-box-shadow: none;
+	box-shadow:none;
+}
+
+input[type=text].form-eist.ng-dirty.ng-invalid-required:after {
+  display: block;
+  content: "Required";
+}
+
 .form-eist::-webkit-input-placeholder {
   color:    rgba(0,0,0,0.26);
 	font-family: "Roboto", sans-serif;
@@ -418,4 +437,115 @@ input[type=checkbox]:checked + label:before {
 	-webkit-box-shadow : none;
 	-moz-box-shadow: none;
 	box-shadow:none;
+}
+
+.btn.btn-eist-flat[disabled], .btn.btn-eist-flat[disabled]:hover {
+  color: rgba(0,0,0,0.24);
+  background: none;
+}
+
+.spinner {
+  -webkit-animation: rotator 1.4s linear infinite;
+          animation: rotator 1.4s linear infinite;
+  margin-left: 1ex;
+}
+
+@-webkit-keyframes rotator {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg);
+  }
+}
+
+@keyframes rotator {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg);
+  }
+}
+
+.path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+  -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+          animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+
+@-webkit-keyframes colors {
+  0% {
+    stroke: #4285F4;
+  }
+  25% {
+    stroke: #DE3E35;
+  }
+  50% {
+    stroke: #F7C223;
+  }
+  75% {
+    stroke: #1B9A59;
+  }
+  100% {
+    stroke: #4285F4;
+  }
+}
+
+@keyframes colors {
+  0% {
+    stroke: #4285F4;
+  }
+  25% {
+    stroke: #DE3E35;
+  }
+  50% {
+    stroke: #F7C223;
+  }
+  75% {
+    stroke: #1B9A59;
+  }
+  100% {
+    stroke: #4285F4;
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+            transform: rotate(450deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+            transform: rotate(450deg);
+  }
 }
