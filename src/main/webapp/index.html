@@ -25,7 +25,7 @@
   }
 </script>
 </head>
-<body>
+<body ng-app="findRoute" ng-controller="routeController">
 	<div class="main">
 		<nav class="navbar navbar-fixed-top">
 			<div class="container-fluid">
@@ -33,11 +33,17 @@
 					data-target="#findRouteModal">EIST Travel App</a>
 			</div>
 		</nav>
-		<div id="map" style="width: 100%"></div>
+		<div id="map" style="width: 100%; position: fixed"></div>
+    <div id="result" class="eist-sidebar">
+      <div ng-repeat="steve in data" class="eist-sidebar-pane shadow-3">
+        Hi, i'm Steve{{steve}}!<br/>
+        I need more space now.
+      </div>
+    </div>
 	</div>
 
-	<div class="modal fade" id="findRouteModal" data-backdrop="false"
-		role="dialog" aria-labelledby="frModalLabel" ng-app="findRoute" ng-controller="routeController">
+	<div class="modal fade" id="findRouteModal" style="z-index: 1030;"
+    data-backdrop="false" role="dialog" aria-labelledby="frModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -91,7 +97,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-          <button type="button" class="btn btn-eist-flat ripple" ng-click="cancel()" data-dismiss="modal">CANCEL</button>
+          <button type="button" class="btn btn-eist-flat ripple" ng-click="cancel(formRoute)" data-dismiss="modal">CANCEL</button>
           <button type="button" class="btn btn-eist-flat ripple" ng-click="request(formRoute)" ng-disabled="loading">
             FIND ROUTE
             <svg class="spinner" ng-hide="!loading" width="14px" height="14px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -102,6 +108,20 @@
 			</div>
 		</div>
 	</div>
+  <div class="modal fade" id="errorModal" data-backdrop="static" role="dialog" aria-labelledby="eModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body error-modal-eist">
+          <h2>An Error ocurred!</h2>
+          <p id="errorText">{{errorMessage}}</p>
+          <div class="error-buttons-eist">
+            <button type="button" class="btn btn-eist-flat ripple" ng-disabled="!hasErrorData" ng-click="showError()" data-dismiss="modal">SHOW</button>
+            <button type="button" class="btn btn-eist-flat ripple" data-dismiss="modal">DISMISS</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 	<script
 		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

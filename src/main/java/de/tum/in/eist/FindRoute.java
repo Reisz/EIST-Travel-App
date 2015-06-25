@@ -27,6 +27,6 @@ public class FindRoute {
 		
 		//TODO logic
 		
-		return Response.ok("{}").build();
+		return Response.ok("{\"status\":\"ok\", \"data\":[0,9,8,7,6,5,4,3,2,1]}").build();
 	}
 }

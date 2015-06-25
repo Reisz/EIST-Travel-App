@@ -140,10 +140,6 @@ a.navbar-brand {
 	font-weight: 500;
 }
 
-.modal-dialog {
-	margin-top: 100px;
-}
-
 .modal-content {
 	border: none;
 	border-radius: 0px;
@@ -559,4 +555,68 @@ input[type=checkbox]:checked + label:before {
     -webkit-transform: rotate(450deg);
             transform: rotate(450deg);
   }
+}
+
+.eist-sidebar {
+  position: absolute;
+  width: 25%;
+  right: 0;
+  top: 0;
+  padding-top: 60px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.eist-sidebar-pane {
+  padding: 20px;
+  margin-bottom: 5px;
+  background-color: #fff;
+}
+
+.modal {
+  text-align: center;
+}
+
+.modal:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 100%;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.error-modal-eist {
+  color: rgba(0,0,0,0.87);
+  padding: 20px;
+  
+}
+
+.error-modal-eist h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.error-modal-eist p {
+  color: rgba(0,0,0,0.54);
+}
+
+.modal-sm .modal-content {
+	-webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px
+		rgba(0, 0, 0, 0.22);
+	-moz-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px
+		rgba(0, 0, 0, 0.22);
+	box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px
+		rgba(0, 0, 0, 0.22);
+}
+
+.error-buttons-eist {
+  text-align: right;
+  padding-top: 20px;
+  margin-bottom: -10px;
+  margin-right: -10px;
 }
