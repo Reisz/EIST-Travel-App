@@ -567,27 +567,35 @@ input[type=checkbox]:checked + label:before {
   padding-bottom: 10px;
 }
 
+@media (max-width: 767px) {
+  .eist-sidebar {
+    width: 80%;
+  }
+}
+
 .eist-sidebar-pane {
   padding: 20px;
   margin-bottom: 5px;
   background-color: #fff;
 }
 
-.modal {
-  text-align: center;
-}
+@media (min-width: 767px) {
+  .modal {
+    text-align: center;
+  }
 
-.modal:before {
-  display: inline-block;
-  vertical-align: middle;
-  content: " ";
-  height: 100%;
-}
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
 
-.modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+  }
 }
 
 .error-modal-eist {
