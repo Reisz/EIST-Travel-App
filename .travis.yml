@@ -1,1 +1,2 @@
+install: echo "package de.tum.in.eist; public class ApiKey { public static final String GOOGLE = \"\";}" > src/main/java/de/tum/in/eist/ApiKey.java
 language: java
