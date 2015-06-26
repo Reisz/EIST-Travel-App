@@ -3,6 +3,15 @@ A Google-Appengine app to route you to your destination using a chain of multipl
 
 ## Compilation
 
+We have hidden our api-keys by putting them in a class named ApiKey that is included in the `.gitignore`. You need to add it yourself to be able to compile this project:
+```java
+package de.tum.in.eist;
+
+public class ApiKey {
+	public static final String GOOGLE = "<your_api_key>";
+}
+```
+
 We use maven to handle our dependencies.
 
 * Install [Maven 3](http://maven.apache.org/download.html)
