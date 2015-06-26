@@ -6,6 +6,8 @@ public class RequestOptions {
 	private TrainType trainType;
 	private FlightType flightType;
 	private int personCount;
+	
+	private int maxWalkingDistance = 5000;
 
 	public enum CarType{
 		Small, Medium, Large
@@ -39,5 +41,11 @@ public class RequestOptions {
 	}
 	public void setPersonCount(int personCount) {
 		this.personCount = personCount;
+	}
+	public int getMaxWalkingDistance() {
+		return maxWalkingDistance;
+	}
+	public void setMaxWalkingDistance(int maxWalkingDistance) {
+		this.maxWalkingDistance = maxWalkingDistance;
 	}
 }
