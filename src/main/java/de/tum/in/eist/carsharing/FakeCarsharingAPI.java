@@ -47,7 +47,7 @@ public class FakeCarsharingAPI implements IRentalCarAPI {
 		//get walking directions
 		url = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.commaSeperated()
 				+ "&destination=" + trainStation.getResults().get(0).getGeometry().getLocation().getLat()
-				+ "," + trainStation.getResults().get(0).getGeometry().getLocation().getLng() + "&mode=walking");
+				+ "," + trainStation.getResults().get(0).getGeometry().getLocation().getLng() + "&mode=walking" + "&key=" + ApiKey.GOOGLE);
 		response = service.fetch(url);
 		DirectionsData walk = mapper.readValue(URLFetchServiceHelper.toString(response), DirectionsData.class);
 		
@@ -57,7 +57,7 @@ public class FakeCarsharingAPI implements IRentalCarAPI {
 				walk.getRoutes().get(0).getLegs().get(0).getDistance().getValue() > requestOptions.getMaxWalkingDistance()) {
 			url = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.commaSeperated()
 					+ "&destination=" + trainStation.getResults().get(0).getGeometry().getLocation().getLat()
-					+ "," + trainStation.getResults().get(0).getGeometry().getLocation().getLng());
+					+ "," + trainStation.getResults().get(0).getGeometry().getLocation().getLng() + "&key=" + ApiKey.GOOGLE);
 			response = service.fetch(url);
 			taxi = mapper.readValue(URLFetchServiceHelper.toString(response), DirectionsData.class);
 			if(taxi.getRoutes().isEmpty() || taxi.getRoutes().get(0).getLegs().isEmpty())
@@ -68,16 +68,16 @@ public class FakeCarsharingAPI implements IRentalCarAPI {
 		url = new URL("https://maps.googleapis.com/maps/api/directions/json?origin="
 				+ trainStation.getResults().get(0).getGeometry().getLocation().getLat()
 				+ "," + trainStation.getResults().get(0).getGeometry().getLocation().getLng()
-				+ "&destination=" + destination.commaSeperated());
+				+ "&destination=" + destination.commaSeperated() + "&key=" + ApiKey.GOOGLE);
 		response = service.fetch(url);
 		DirectionsData drive = mapper.readValue(URLFetchServiceHelper.toString(response), DirectionsData.class);
 		if(drive.getRoutes().isEmpty() || drive.getRoutes().get(0).getLegs().isEmpty())
 			return null;
 		
-		return buildResponse(trainStation, walk, taxi, drive);
+		return buildResponse(walk, taxi, drive);
 	}
 
-	private List<RouteSegment> buildResponse(PlacesData trainStation, DirectionsData walk, DirectionsData taxi, DirectionsData drive) {
+	private List<RouteSegment> buildResponse(DirectionsData walk, DirectionsData taxi, DirectionsData drive) {
 		ArrayList<RouteSegment> result = new ArrayList<RouteSegment>();
 		
 		if(taxi == null) {
