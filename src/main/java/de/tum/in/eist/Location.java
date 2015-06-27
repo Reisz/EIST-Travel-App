@@ -54,6 +54,10 @@ public class Location {
     }
     return false;
   }
+  
+  public String commaSeperated() {
+	  return latitude + "," + longitude;
+  }
 
   @Override
   public String toString() {

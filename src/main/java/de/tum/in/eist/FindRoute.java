@@ -3,6 +3,7 @@ package de.tum.in.eist;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -12,10 +13,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jackson.JsonFactory;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.node.ArrayNode;
+import org.codehaus.jackson.node.ObjectNode;
 
 import com.google.gson.JsonObject;
 
+import de.tum.in.eist.algorithm.RouteSegment;
+import de.tum.in.eist.carsharing.FakeCarsharingAPI;
 import de.tum.in.eist.distance.DistanceAPI;
 import de.tum.in.eist.distance.DistanceData;
 
@@ -23,10 +31,12 @@ import de.tum.in.eist.distance.DistanceData;
 public class FindRoute {
 	
 	private final DistanceAPI distanceApi;
+	private final FakeCarsharingAPI carsharingApi;
 	
 	@Inject
-	public FindRoute(DistanceAPI distanceApi){
+	public FindRoute(DistanceAPI distanceApi, FakeCarsharingAPI gRentalCarAPI){
 		this.distanceApi = distanceApi;
+		this.carsharingApi = gRentalCarAPI;
 	}
 	
 	/**
@@ -46,10 +56,24 @@ public class FindRoute {
 			
 		try {
 			DistanceData distanceData = distanceApi.getDistanceData(origin, destination);
+			List<RouteSegment> segments = carsharingApi.getSegments(
+					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
+					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),
+					new RequestOptions());
 			ObjectMapper mapper = new ObjectMapper();
 			
-			return Response.ok(mapper.writeValueAsString(distanceData)).build();
-		} catch (IOException e) {
+			ObjectNode response = mapper.createObjectNode();
+			ArrayNode route = mapper.createArrayNode();
+			
+			response.put("status", "ok");
+			response.put("data", route);
+			
+			for(RouteSegment s : segments) {
+				route.add(s.getJSON(mapper));
+			}
+			
+			return Response.ok(getJson(response, mapper)).build();
+		} catch (Exception e) {
 			return Response.ok(generateExceptionJson(e)).build();
 		}
 	}
@@ -61,6 +85,12 @@ public class FindRoute {
 		response.addProperty("status", "exception");
 		response.addProperty("message", w.toString());
 		return response.toString();
-		
+	}
+	
+	public String getJson(JsonNode node, ObjectMapper mapper) throws JsonProcessingException, IOException {
+		JsonFactory jFac = new JsonFactory();
+		StringWriter w = new StringWriter();
+		mapper.writeValue(jFac.createJsonGenerator(new PrintWriter(w)), node);
+		return w.toString();
 	}
 }

@@ -1,4 +1,4 @@
-package de.tum.in.eist.rentalcar;
+package de.tum.in.eist.carsharing.data.directions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class DirectionsRouteData {
 		private DirectionsBoundsData bounds;
 		private DirectionsFareData fare;
 		private List<DirectionsLegData> legs = new ArrayList<DirectionsLegData>();
-		private DistancePolylineData overview;
+		private DirectionsPolylineData overview;
 		
 		public String getSummary() {
 			return summary;
@@ -38,10 +38,10 @@ public class DirectionsRouteData {
 		public void setLegs(List<DirectionsLegData> legs) {
 			this.legs = legs;
 		}
-		public DistancePolylineData getOverview() {
+		public DirectionsPolylineData getOverview() {
 			return overview;
 		}
-		public void setOverview(DistancePolylineData overview) {
+		public void setOverview(DirectionsPolylineData overview) {
 			this.overview = overview;
 		}
 		

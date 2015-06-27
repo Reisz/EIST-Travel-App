@@ -7,6 +7,8 @@ public class RequestOptions {
 	private FlightType flightType;
 	private int personCount;
 	
+	private String date;
+	
 	private int maxWalkingDistance = 5000;
 
 	public enum CarType{
@@ -47,5 +49,11 @@ public class RequestOptions {
 	}
 	public void setMaxWalkingDistance(int maxWalkingDistance) {
 		this.maxWalkingDistance = maxWalkingDistance;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

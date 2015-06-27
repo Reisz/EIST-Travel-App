@@ -43,7 +43,7 @@ public class QPXFlightAPI implements IFlightAPI {
 		HTTPRequest r = new HTTPRequest(url, HTTPMethod.POST);
 		r.addHeader(new HTTPHeader("Content-Type", "application/json"));
 		
-		String flightType;
+		String flightType = "COACH";
 		switch(requestOptions.getFlightType()) {
 		case FirstClass:
 			flightType = "FIRST";
@@ -57,14 +57,13 @@ public class QPXFlightAPI implements IFlightAPI {
 		requestData.getPassengers().setAdultCount(requestOptions.getPersonCount());
 		requestData.getSlice().setOrigin(originIATA);
 		requestData.getSlice().setDestination(destinationIATA);
-		requestData.getSlice().setDate(requestOptions.getData());
+		requestData.getSlice().setDate(requestOptions.getDate());
 		requestData.getSlice().setPreferredCabin(flightType);
 		r.setPayload(mapper.writeValueAsString(requestData).getBytes("UTF-8"));
 
 		HTTPResponse response = service.fetch(r);
 		
-		
-		
+		return null;
 	}
 
 }

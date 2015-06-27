@@ -1,4 +1,4 @@
-package de.tum.in.eist.rentalcar;
+package de.tum.in.eist.carsharing.data.directions;
 
 public class DirectionsFareData {
 

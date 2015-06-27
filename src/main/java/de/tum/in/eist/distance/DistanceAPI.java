@@ -3,6 +3,9 @@ package de.tum.in.eist.distance;
 import java.io.IOException;
 import java.net.URL;
 
+import com.google.appengine.api.urlfetch.FetchOptions;
+import com.google.appengine.api.urlfetch.HTTPMethod;
+import com.google.appengine.api.urlfetch.HTTPRequest;
 import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.appengine.api.urlfetch.URLFetchService;
 
@@ -24,8 +27,8 @@ public class DistanceAPI {
 	public DistanceData getDistanceData(String origin, String destination) throws IOException{	
 		URL url =
 		        new URL("http://www.distance24.org/route.json?stops=" + origin + "|" + destination);
-		
-		HTTPResponse response = service.fetch(url);
+		HTTPRequest request = new HTTPRequest(url, HTTPMethod.GET,FetchOptions.Builder.withDeadline(60));
+		HTTPResponse response = service.fetch(request);
 		ObjectMapper mapper = new ObjectMapper();
 		
 		return mapper.readValue(URLFetchServiceHelper.toString(response), DistanceData.class);

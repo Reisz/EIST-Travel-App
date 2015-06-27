@@ -1,4 +1,7 @@
-package de.tum.in.eist.rentalcar;
+package de.tum.in.eist.carsharing.data.directions;
+
+import de.tum.in.eist.carsharing.data.GoogleLocationData;
+import de.tum.in.eist.carsharing.data.GoogleNamedIntegerData;
 
 public class DirectionsStepData {
 
@@ -7,7 +10,7 @@ public class DirectionsStepData {
 	private GoogleLocationData start_location;
 	private GoogleLocationData end_location;
 	private String html_instructions;
-	private DistancePolylineData polyline;
+	private DirectionsPolylineData polyline;
 	
 	public GoogleNamedIntegerData getDuration() {
 		return duration;
@@ -39,10 +42,10 @@ public class DirectionsStepData {
 	public void setHtml_instructions(String html_instructions) {
 		this.html_instructions = html_instructions;
 	}
-	public DistancePolylineData getPolyline() {
+	public DirectionsPolylineData getPolyline() {
 		return polyline;
 	}
-	public void setPolyline(DistancePolylineData polyline) {
+	public void setPolyline(DirectionsPolylineData polyline) {
 		this.polyline = polyline;
 	}
 	

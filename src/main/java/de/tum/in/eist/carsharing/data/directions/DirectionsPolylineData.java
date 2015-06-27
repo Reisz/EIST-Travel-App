@@ -1,6 +1,6 @@
-package de.tum.in.eist.rentalcar;
+package de.tum.in.eist.carsharing.data.directions;
 
-public class DistancePolylineData {
+public class DirectionsPolylineData {
 
 	private String points;
 

@@ -1,6 +1,8 @@
-package de.tum.in.eist.rentalcar;
+package de.tum.in.eist.carsharing.data.directions;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import de.tum.in.eist.carsharing.data.GoogleNamedIntegerData;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DirectionsLegData {
