@@ -15,12 +15,12 @@ import de.tum.in.eist.ApiKey;
 import de.tum.in.eist.Location;
 import de.tum.in.eist.RequestOptions;
 import de.tum.in.eist.URLFetchServiceHelper;
-import de.tum.in.eist.algorithm.IRentalCarAPI;
+import de.tum.in.eist.algorithm.ICarAPI;
 import de.tum.in.eist.algorithm.RouteSegment;
 import de.tum.in.eist.carsharing.data.directions.DirectionsData;
 import de.tum.in.eist.carsharing.data.places.PlacesData;
 
-public class FakeCarsharingAPI implements IRentalCarAPI {
+public class FakeCarsharingAPI implements ICarAPI {
 	
 	private final URLFetchService service;
 	
