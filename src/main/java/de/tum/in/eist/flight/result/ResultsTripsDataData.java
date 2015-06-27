@@ -1,8 +1,10 @@
-package de.tum.in.eist.flight;
+package de.tum.in.eist.flight.result;
 
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import de.tum.in.eist.flight.QPXNamedCode;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResultsTripsDataData {

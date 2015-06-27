@@ -1,4 +1,4 @@
-package de.tum.in.eist.flight;
+package de.tum.in.eist.flight.result;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 

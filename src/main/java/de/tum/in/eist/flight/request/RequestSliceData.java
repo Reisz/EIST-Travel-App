@@ -1,4 +1,4 @@
-package de.tum.in.eist.flight;
+package de.tum.in.eist.flight.request;
 
 public class RequestSliceData {
 

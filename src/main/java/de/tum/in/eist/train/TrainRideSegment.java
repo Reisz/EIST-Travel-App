@@ -9,7 +9,7 @@ import de.tum.in.eist.carsharing.data.directions.DirectionsData;
 public class TrainRideSegment implements RouteSegment {
 
 	private DirectionsData data;
-	private String type = "cs-drive";
+	private String type = "cs-train";
 	
 	@Override
 	public int price() {
