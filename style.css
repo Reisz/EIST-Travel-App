@@ -1,0 +1,63 @@
+body {
+	padding-top: 50px;
+  font-family: "Roboto", sans-serif;
+  color: rgba(0,0,0,0.87);
+}
+
+.navbar {
+	background-color: #3F51B5;
+	border: none;
+  
+	-webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+	-moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+}
+
+a.navbar-brand {
+	font-weight: 500;
+  color: #fff;
+}
+
+.navbar-collapse a {
+  color: #fff;
+}
+
+.nav>li>a:focus, .nav>li>a:hover, .nav>li>a.active {
+	background-color: #3F51B5;
+  padding-bottom: 13px;
+  border-bottom: 2px solid #FF80AB;
+}
+
+.container  {
+	-webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px
+		rgba(0, 0, 0, 0.23);
+	-moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px
+		rgba(0, 0, 0, 0.23);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.container .btn {
+  background: none;
+  
+  border: none;
+  border-radius: 0;
+  
+  color: #FF80AB;
+  font-weight: 700;
+}
+
+.container .btn:hover, .container .btn:focus {
+  color: #FF80AB;
+  background-color: rgba(0,0,0,0.12);
+}
+
+.container .btn:active, .container .btn:active:focus, .container .btn:focus {
+  border: none;
+
+	-webkit-box-shadow : none;
+	-moz-box-shadow: none;
+	box-shadow:none;
+}

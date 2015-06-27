@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>EIST Travel App Information</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Roboto:500,700,400'
+	rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  
+<link rel="stylesheet" href="style.css">
+<head>
+  <meta charset="utf-8">
+  <title>EIST Travel App</title>
+</head>
+<body>
+  <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand ripple" href="index.html">EIST Travel App</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a class="active" href="algo.html">Algorithm</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Algorithm</h1>
+    <p>This app uses a multi-step algorithm to calculate the most optimal route:</p>
+    <p>
+      <ol>
+        <li>
+          Get information about origin and destination (mainly coordinates and nearby cities).
+        </li>
+        <li>
+          Use simple methods of generating routes between two points (like a car ride) to write APIs.
+        </li>
+        <li>
+          Use the above to generate a graph using the following pattern:
+          <ul>
+            <li>Connect origin and destination</li>
+            <li>Connect origin to each nearby city</li>
+            <li>Connect each city nearby of destination to destination</li>
+            <li>Connect each city nearby of origin to each city nearby of deatination</li>
+            <li>Connect origin to each city nearby of destination</li>
+            <li>Connect each city nearby of origin to destination</li>
+          </ul>
+          For each of these search all available APIs and add one directional edge per valid route to your graph.
+        </li>
+        <li>
+          Generate a list of all paths through the graph. Because this graph is highly linear, <a href="https://en.wikipedia.org/wiki/Depth-first_search">DFS</a> can be used to accomplish this.
+        </li>
+        <li>
+          Sort your list of paths by one of the following citeria:
+          <ul>
+            <li>Cheapest first</li>
+            <li>Fastest first</li>
+            <li>Balanced (lowest score first)</li>
+          </ul>
+          To calculate the score for a route, take the highest and lowest value for each, price and duration. Then apply the formula score = ((current - lowest) / (highest - lowest)) to both and add the results toghther.
+        </li>
+      </ol>
+      This will result in a list of viable route instructions, ordered by dregree of recommendation.
+    </p>
+  </div>
+</body>
+</html> 
