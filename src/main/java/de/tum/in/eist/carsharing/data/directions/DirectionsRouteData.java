@@ -1,19 +1,16 @@
 package de.tum.in.eist.carsharing.data.directions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DirectionsRouteData {
-
 		private String summary;
 		private DirectionsBoundsData bounds;
 		private DirectionsFareData fare;
-		private List<DirectionsLegData> legs = new ArrayList<DirectionsLegData>();
-		private DirectionsPolylineData overview;
-		
+		private List<DirectionsLegData> legs;
+		private DirectionsPolylineData overview_polyline;
 		public String getSummary() {
 			return summary;
 		}
@@ -38,12 +35,10 @@ public class DirectionsRouteData {
 		public void setLegs(List<DirectionsLegData> legs) {
 			this.legs = legs;
 		}
-		public DirectionsPolylineData getOverview() {
-			return overview;
+		public DirectionsPolylineData getOverview_polyline() {
+			return overview_polyline;
 		}
-		public void setOverview(DirectionsPolylineData overview) {
-			this.overview = overview;
+		public void setOverview_polyline(DirectionsPolylineData overview_polyline) {
+			this.overview_polyline = overview_polyline;
 		}
-		
-		
 }
