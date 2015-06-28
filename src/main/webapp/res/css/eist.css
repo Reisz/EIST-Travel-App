@@ -440,6 +440,7 @@ input[type=checkbox]:checked + label:before {
 .btn-eist-flat:hover, .btn-eist-flat:focus {
   color: #FF80AB;
   background-color: rgba(0,0,0,0.12);
+  outline: none;
 }
 
 .btn.btn-eist-flat:active, .btn.btn-eist-flat:active:focus, .btn.active.btn-eist-flat:focus {
@@ -640,7 +641,9 @@ input[type=checkbox]:checked + label:before {
 }
 
 .directions-title {
+  display: inline;
   font-size: 18px;
+  width: 95%;
 }
 
 .directions-title a {

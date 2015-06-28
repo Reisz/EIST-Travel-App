@@ -42,6 +42,7 @@ findRoute.controller("routeController", function($scope, $http, $timeout) {
         }
         
         $scope.data = data.data;
+        $scope.switchTo();
         $("#findRouteModal").modal("hide");
         
         $scope.origin = "";
@@ -70,6 +71,15 @@ findRoute.controller("routeController", function($scope, $http, $timeout) {
     
     myWindow = window.open("data:text/html," + encodeURIComponent(data), "_blank");
     myWindow.focus();
+  }
+  $scope.switchTo = function() {
+    $scope.data.forEach( function(element, index, array) {
+      if(element.data && element.data.routes[0].overview_polyline)
+        L.Polyline.fromEncoded(element.data.routes[0].overview_polyline.points).addTo(map);
+    });
+  }
+  $scope.setViewport = function(bounds) {
+    map.fitBounds([[bounds.northeast.lat, bounds.northeast.lng], [bounds.southwest.lat, bounds.southwest.lng]]);
   }
 });
 findRoute.directive("combobox", function() {
