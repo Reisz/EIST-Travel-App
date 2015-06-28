@@ -60,7 +60,7 @@ public class FindRoute {
 			
 		try {
 			DistanceData distanceData = distanceApi.getDistanceData(origin, destination);
-			List<RouteSegment> segments = carsharingApi.getSegments(
+			List<RouteSegment> segments = trainApi.getSegments(
 					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
 					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),
 					new RequestOptions());
@@ -68,10 +68,17 @@ public class FindRoute {
 			mapper.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			
 			ObjectNode response = mapper.createObjectNode();
+			ArrayNode routes = mapper.createArrayNode();
+			ObjectNode route1 = mapper.createObjectNode();
 			ArrayNode route = mapper.createArrayNode();
 			
 			response.put("status", "ok");
-			response.put("data", route);
+			response.put("routes", routes);
+			
+			routes.add(route1);
+			route1.put("duration", 0);
+			route1.put("price", 0);
+			route1.put("route", route);
 			
 			for(RouteSegment s : segments) {
 				route.add(s.getJSON(mapper));

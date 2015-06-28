@@ -7,6 +7,7 @@ findRoute.controller("routeController", function($scope, $http, $timeout) {
   $scope.plane = true;
   
   $scope.data = [];
+  $scope.idx = 0;
   
   $scope.loading = false;
   $scope.cancel = function (form) {
@@ -41,8 +42,9 @@ findRoute.controller("routeController", function($scope, $http, $timeout) {
           return;
         }
         
-        $scope.data = data.data;
-        $scope.switchTo();
+        $scope.data = data.routes;
+        $scope.collectPolylines();
+        $scope.switchTo(0);
         $("#findRouteModal").modal("hide");
         
         $scope.origin = "";
@@ -72,11 +74,39 @@ findRoute.controller("routeController", function($scope, $http, $timeout) {
     myWindow = window.open("data:text/html," + encodeURIComponent(data), "_blank");
     myWindow.focus();
   }
-  $scope.switchTo = function() {
-    $scope.data.forEach( function(element, index, array) {
-      if(element.data && element.data.routes[0].overview_polyline)
-        L.Polyline.fromEncoded(element.data.routes[0].overview_polyline.points).addTo(map);
+  $scope.collectPolylines = function() {
+    $scope.data.forEach(function(element, index, array) {
+      element.layer = L.layerGroup();
+      if(element.route) {
+        element.route.forEach(function(e, i, a) {
+          if(e.data && e.data.routes[0].overview_polyline) {
+            element.layer.addLayer(L.Polyline.fromEncoded(e.data.routes[0].overview_polyline.points));
+          }
+          if(e.data && e.data.routes[0].bounds) {
+            if(!element.bounds) {
+              element.bounds = L.latLngBounds(
+                [
+                  e.data.routes[0].bounds.northeast.lat,
+                  e.data.routes[0].bounds.northeast.lng
+                ], 
+                [
+                  e.data.routes[0].bounds.southwest.lat,
+                  e.data.routes[0].bounds.southwest.lng
+                ]
+              );
+            }
+            element.bounds.extend([e.data.routes[0].bounds.northeast.lat, e.data.routes[0].bounds.northeast.lng]);
+            element.bounds.extend([e.data.routes[0].bounds.southwest.lat, e.data.routes[0].bounds.southwest.lng]);
+          }
+        });
+      }
     });
+  }
+  $scope.switchTo = function(i) {
+    map.removeLayer($scope.data[$scope.idx].layer);
+    $scope.idx = i;
+    map.addLayer($scope.data[i].layer);
+    map.fitBounds($scope.data[i].bounds);
   }
   $scope.setViewport = function(bounds) {
     map.fitBounds([[bounds.northeast.lat, bounds.northeast.lng], [bounds.southwest.lat, bounds.southwest.lng]]);

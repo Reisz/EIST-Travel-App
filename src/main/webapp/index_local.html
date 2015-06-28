@@ -24,7 +24,7 @@
 <script>
   function serverFindRoute($http, $timeout, append, callback, errorCallback) {
     console.log(append);
-    $http.get("res/test/tr.json").success(callback).error(errorCallback); //needs a local server now (e.g. python -m SimpleHTTPServer 8080)
+    $http.get("res/test/cs.json").success(callback).error(errorCallback); //needs a local server now (e.g. python -m SimpleHTTPServer 8080)
   }
 </script>
 </head>
@@ -38,7 +38,7 @@
 		</nav>
 		<div id="map" style="width: 100%; position: fixed"></div>
     <div id="result" class="eist-sidebar">
-      <div ng-repeat="segment in data" class="eist-sidebar-pane shadow-3">
+      <div ng-repeat="segment in data[idx].route" class="eist-sidebar-pane shadow-3">
         <div ng-switch="segment.type">
         <!--WALK-->
           <div ng-switch-when="walk">
