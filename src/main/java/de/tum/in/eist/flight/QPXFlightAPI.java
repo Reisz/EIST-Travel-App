@@ -14,6 +14,7 @@ import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.inject.Inject;
 
+import de.tum.eist.segments.QPXFlightSegment;
 import de.tum.in.eist.ApiKey;
 import de.tum.in.eist.RequestOptions;
 import de.tum.in.eist.URLFetchServiceHelper;
@@ -69,7 +70,11 @@ public class QPXFlightAPI implements IFlightAPI {
 		//iterate over result and get sum of distance and duration of the segments
 		//add them to the list of route segments and return the list
 		
-		return null;
+		QPXFlightSegment flSegment = new QPXFlightSegment();
+		flSegment.setData(response_result);
+		result.add(flSegment);		
+		
+		return result;
 		
 	}
 
