@@ -60,7 +60,7 @@ public class FindRoute {
 			
 		try {
 			DistanceData distanceData = distanceApi.getDistanceData(origin, destination);
-			List<RouteSegment> segments = trainApi.getSegments(
+			List<RouteSegment> segments = carsharingApi.getSegments(
 					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
 					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),
 					new RequestOptions());

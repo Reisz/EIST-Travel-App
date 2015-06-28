@@ -133,6 +133,7 @@ public class TrainAPI implements ITrainAPI {
 		}
 		
 		TrainRideSegment trSegment = new TrainRideSegment();
+		trSegment.setData(train);
 		result.add(trSegment);
 		
 		if(taxiDestination == null){
