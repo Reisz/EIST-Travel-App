@@ -138,7 +138,7 @@ body {
 		rgba(0, 0, 0, 0.23);
 }
 
-a.navbar-brand {
+span.navbar-brand {
 	color: #fff;
 	font-family: "Roboto", sans-serif;
 	font-weight: 500;
@@ -694,4 +694,15 @@ input[type=checkbox]:checked + label:before {
 .eist-footer-pane.primary {
   color: #fff;
   background-color: #3F51B5;
+}
+
+.navbar-btn-eist {
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+}
+
+ul.navbar-nav.navbar-right {
+  padding-right: 20px;
+  font-weight: 700;
+  font-size: 24px;
 }

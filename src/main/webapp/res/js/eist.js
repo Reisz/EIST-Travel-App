@@ -103,6 +103,3 @@ $(".dropdown-menu.dropdown-eist").on("click", "li", function() {
   $(this).parent().children(":has(.active)").children().first().removeClass("active");
   $(this).children().first().addClass("active");
 });
-
-// debug
-$('#findRouteModal').modal('show');

@@ -28,10 +28,16 @@
 <body ng-app="findRoute" ng-controller="routeController">
 	<div class="main">
 		<nav class="navbar navbar-fixed-top">
-			<div class="container-fluid">
-				<a class="navbar-brand ripple" href="#" data-toggle="modal"
-					data-target="#findRouteModal">EIST Travel App</a>
+			<div class="navbar-header">
+				<span class="navbar-brand">EIST Travel App</span>
 			</div>
+      <ul class="nav navbar-nav">
+      <li><a class="navbar-btn-eist ripple" href="#" data-toggle="modal"
+					data-target="#findRouteModal">Find Route</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="navbar-btn-eist ripple" href="http://reisz.github.io/EIST-Travel-App/index.html">?</a></li>
+      </ul>
 		</nav>
 		<div id="map" style="width: 100%; position: fixed"></div>
     <div id="result" class="eist-sidebar">
