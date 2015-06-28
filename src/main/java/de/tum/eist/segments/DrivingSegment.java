@@ -13,7 +13,7 @@ public class DrivingSegment implements RouteSegment {
 	
 	@Override
 	public int price() {
-		return 15 * data.getRoutes().get(0).getLegs().get(0).getDistance().getValue();
+		return 15 * (data.getRoutes().get(0).getLegs().get(0).getDistance().getValue() / 1000);
 	}
 
 	@Override

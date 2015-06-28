@@ -1,6 +1,6 @@
 package de.tum.eist.segments;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,7 +29,7 @@ public class QPXFlightSegment implements RouteSegment{
 
 	@Override
 	public int duration() {
-		ArrayList<ResultsTripsTripOptionSliceData> slice = (ArrayList) data.getTrips().getTripOption().get(0).getSlice();
+		List<ResultsTripsTripOptionSliceData> slice = data.getTrips().getTripOption().get(0).getSlice();
 		int duration = 0;
 		for(ResultsTripsTripOptionSliceData res : slice){
 			duration += res.getDuration();

@@ -18,7 +18,11 @@ public class Route {
 	}
 	
 	public void updateRating(int minPrice, int priceDelta, int minDuration, int durationDelta) {
-		rating = ((totalPrice - minPrice) / priceDelta) + ((totalDuration - minDuration) / durationDelta);
+		rating = 0;
+		if(priceDelta != 0)
+			rating += ((totalPrice - minPrice) / priceDelta);
+		if(durationDelta != 0)
+			rating += ((totalDuration - minDuration) / durationDelta);
 	}
 
 	public int getTotalPrice() {
@@ -35,5 +39,15 @@ public class Route {
 
 	public List<RouteSegment> getSegments() {
 		return segments;
+	}
+	
+	public String priceString() {
+		int p = getTotalPrice();
+		return (new StringBuilder()).append("$").append(p / 100).append(".").append(p % 100).toString();
+	}
+	
+	public String durationString() {
+		int d = getTotalDuration();
+		return String.format("%d:%02d:%02d", d/3600, (d%3600)/60, (d%60));
 	}
 }

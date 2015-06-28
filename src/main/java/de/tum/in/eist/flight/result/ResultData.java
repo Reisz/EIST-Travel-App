@@ -1,5 +1,8 @@
 package de.tum.in.eist.flight.result;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ResultData {
 
 	private ResultsTripsData trips;

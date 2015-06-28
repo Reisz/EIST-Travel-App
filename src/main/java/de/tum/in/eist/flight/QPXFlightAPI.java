@@ -21,6 +21,7 @@ import de.tum.in.eist.URLFetchServiceHelper;
 import de.tum.in.eist.algorithm.IFlightAPI;
 import de.tum.in.eist.algorithm.RouteSegment;
 import de.tum.in.eist.flight.request.RequestData;
+import de.tum.in.eist.flight.request.RequestSliceData;
 import de.tum.in.eist.flight.result.ResultData;
 
 public class QPXFlightAPI implements IFlightAPI {
@@ -57,10 +58,12 @@ public class QPXFlightAPI implements IFlightAPI {
 		
 		RequestData requestData = new RequestData();
 		requestData.getPassengers().setAdultCount(requestOptions.getPersonCount());
-		requestData.getSlice().setOrigin(originIATA);
-		requestData.getSlice().setDestination(destinationIATA);
-		requestData.getSlice().setDate(requestOptions.getDate());
-		requestData.getSlice().setPreferredCabin(flightType);
+		RequestSliceData slice = new RequestSliceData();
+		slice.setOrigin(originIATA);
+		slice.setDestination(destinationIATA);
+		slice.setDate(requestOptions.getDate());
+		slice.setPreferredCabin(flightType);
+		requestData.getSlice().add(slice);
 		r.setPayload(mapper.writeValueAsString(requestData).getBytes("UTF-8"));
 
 		HTTPResponse response = service.fetch(r);
@@ -69,6 +72,9 @@ public class QPXFlightAPI implements IFlightAPI {
 		
 		//iterate over result and get sum of distance and duration of the segments
 		//add them to the list of route segments and return the list
+		
+		if(response_result.getTrips() == null)
+			return null;
 		
 		QPXFlightSegment flSegment = new QPXFlightSegment();
 		flSegment.setData(response_result);

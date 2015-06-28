@@ -39,6 +39,12 @@ findRoute.controller("routeController", function($scope, $http, $timeout) {
         $scope.loading = false;
         
         if(data.status != "ok") {
+          if(data.status == "no-route") {
+            $scope.errorMessage = "We could not find a valid route for your request, please modify your settings and try again.";
+            $scope.hasErrorData = false;
+            $("#errorModal").modal("show");
+            return;
+          }
           $scope.errorMessage = "Invalid data.";
           $scope.errorData = data;
           $scope.hasErrorData = true;

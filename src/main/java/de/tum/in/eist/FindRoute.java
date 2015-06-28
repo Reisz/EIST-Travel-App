@@ -16,31 +16,38 @@ import javax.ws.rs.core.Response;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.DeserializationConfig.Feature;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
 
 import com.google.gson.JsonObject;
 
+import de.tum.in.eist.algorithm.AlgorithmManager;
+import de.tum.in.eist.algorithm.Route;
 import de.tum.in.eist.algorithm.RouteSegment;
+import de.tum.in.eist.apis.CarAPI;
 import de.tum.in.eist.apis.FakeCarsharingAPI;
 import de.tum.in.eist.apis.TrainAPI;
 import de.tum.in.eist.distance.DistanceAPI;
 import de.tum.in.eist.distance.DistanceData;
+import de.tum.in.eist.flight.QPXFlightAPI;
 
 @Path("/findRoute")
 public class FindRoute {
 	
 	private final DistanceAPI distanceApi;
 	private final FakeCarsharingAPI carsharingApi;
+	private final CarAPI carApi;
 	private final TrainAPI trainApi;
+	private final QPXFlightAPI qpxFlightApi;
 	
 	@Inject
-	public FindRoute(DistanceAPI distanceApi, FakeCarsharingAPI gRentalCarAPI, TrainAPI trainApi){
+	public FindRoute(DistanceAPI distanceApi, FakeCarsharingAPI gRentalCarAPI, CarAPI carApi, TrainAPI trainApi, QPXFlightAPI qpxFlightApi){
 		this.distanceApi = distanceApi;
 		this.carsharingApi = gRentalCarAPI;
+		this.carApi = carApi;
 		this.trainApi = trainApi;
+		this.qpxFlightApi = qpxFlightApi;
 	}
 	
 	/**
@@ -64,42 +71,62 @@ public class FindRoute {
 		@PathParam("planeClass") int planeClass) {
 		try {
 			RequestOptions options = new RequestOptions(balance, carEnabled, trainEnabled, trainClass, planeEnabled, planeClass);
-			DistanceData distanceData = distanceApi.getDistanceData(origin, destination);
-			List<RouteSegment> segments = trainApi.getSegments(
-					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
-					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),options);
-
-			List<RouteSegment> segments2 = carsharingApi.getSegments(
-					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
-					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),options);
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			options.setDate("2015-06-29");
 			
+			ObjectMapper mapper = new ObjectMapper();
+
+			DistanceData distanceData = distanceApi.getDistanceData(origin, destination);
+			
+			AlgorithmManager manager = new AlgorithmManager(
+					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
+					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()));
+			
+			for(Location l : distanceApi.getNearbyLocations(distanceData.getStops().get(0)))
+				manager.addNearOrigin(l);
+			for(Location l : distanceApi.getNearbyLocations(distanceData.getStops().get(1)))
+				manager.addNearOrigin(l);
+			
+			if(!distanceData.getStops().get(0).getAirports().isEmpty()) {
+				manager.setOriginAirport(distanceApi.getAirportLocation(distanceData.getStops().get(0).getAirports().get(0).getIata()),
+						distanceData.getStops().get(0).getAirports().get(0).getIata());
+			}
+			if(!distanceData.getStops().get(1).getAirports().isEmpty()) {
+				manager.setOriginAirport(distanceApi.getAirportLocation(distanceData.getStops().get(1).getAirports().get(0).getIata()),
+						distanceData.getStops().get(1).getAirports().get(0).getIata());
+			}
+			
+			manager.addCarApi(carApi);
+			manager.addCarApi(carsharingApi);
+			manager.addTrainApi(trainApi);
+			manager.addFlightApi(qpxFlightApi);
+			
+			List<Route> routes = manager.getRoutes(options);
+						
 			ObjectNode response = mapper.createObjectNode();
-			ArrayNode routes = mapper.createArrayNode();
-			ObjectNode route1 = mapper.createObjectNode();
-			ArrayNode route1a = mapper.createArrayNode();
-			ObjectNode route2 = mapper.createObjectNode();
-			ArrayNode route2a = mapper.createArrayNode();
+			ArrayNode routesNode = mapper.createArrayNode();
+			
+			if(routes.isEmpty()) {
+				response.put("status", "no-route");
+				return Response.ok(getJson(response, mapper)).build();
+			}
 			
 			response.put("status", "ok");
-			response.put("routes", routes);
+			response.put("routes", routesNode);
 			
-			routes.add(route1);
-			route1.put("duration", 1);
-			route1.put("price", 1);
-			route1.put("route", route1a);
-			
-			routes.add(route2);
-			route2.put("duration", 2);
-			route2.put("price", 2);
-			route2.put("route", route2a);
-			
-			for(RouteSegment s : segments) {
-				route1a.add(s.getJSON(mapper));
-			}
-			for(RouteSegment s : segments2) {
-				route2a.add(s.getJSON(mapper));
+			for(int i = 0; i < 4 && i < routes.size(); i++) {
+				Route r = routes.get(i);
+				
+				ObjectNode route = mapper.createObjectNode();
+				route.put("duration", r.durationString());
+				route.put("price", r.priceString());
+				
+				ArrayNode array = mapper.createArrayNode();
+				for(RouteSegment s :r.getSegments()) {
+					array.add(s.getJSON(mapper));
+				}
+				route.put("route", array);
+				
+				routesNode.add(route);
 			}
 			
 			return Response.ok(getJson(response, mapper)).build();

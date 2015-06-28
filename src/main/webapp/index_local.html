@@ -125,7 +125,7 @@
     </div>
     <div id="options" class="eist-footer">
       <div ng-repeat="option in data">
-        <button class="eist-footer-pane shadow-3" ng-click="switchTo($index)" ng-class="{primary: $index == 0}">
+        <button class="eist-footer-pane shadow-3" ng-click="switchTo($index)" ng-class="{primary: $index == idx}">
           <div style="float: left; font-size:30px; margin-right: 15px;">
             #{{$index + 1}}
           </div>

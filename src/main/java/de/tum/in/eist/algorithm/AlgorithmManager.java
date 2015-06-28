@@ -14,21 +14,21 @@ public class AlgorithmManager {
 	final static Comparator<Route> CHEAPEST = new Comparator<Route>() {
 		@Override
 		public int compare(Route o1, Route o2) {
-			return o2.getTotalPrice() - o1.getTotalPrice();
+			return o1.getTotalPrice() - o2.getTotalPrice();
 		}
 	};
 
 	final static Comparator<Route> FASTEST = new Comparator<Route>() {
 		@Override
 		public int compare(Route o1, Route o2) {
-			return o2.getTotalDuration() - o1.getTotalDuration();
+			return o1.getTotalDuration() - o2.getTotalDuration();
 		}
 	};
 
 	final static Comparator<Route> BALANCED = new Comparator<Route>() {
 		@Override
 		public int compare(Route o1, Route o2) {
-			return o2.getRating() - o1.getRating();
+			return o1.getRating() - o2.getRating();
 		}
 	};
 	
@@ -124,7 +124,7 @@ public class AlgorithmManager {
 	}
 	
 	private void establishAirportConnections(RequestOptions options) throws IOException {
-		if(options.isFlightEnabled()) {
+		if(options.isFlightEnabled() && originAirport != null && destAirport != null) {
 			//routes to and from airports
 			connect(origin, originAirport, options);
 			connect(destAirport, dest, options);

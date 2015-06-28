@@ -1,7 +1,6 @@
 package de.tum.in.eist.algorithm;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import de.tum.in.eist.Location;
@@ -32,8 +31,7 @@ public class CityNode {
 		}
 		
 		for(CityEdge e : edges) {
-			List<RouteSegment> next = new ArrayList<RouteSegment>();
-			Collections.copy(next, current);
+			List<RouteSegment> next = new ArrayList<RouteSegment>(current);
 			next.addAll(e.getRoute());
 			e.getNext().extendPath(next, result, end);
 		}
