@@ -26,15 +26,16 @@ public class CityNode {
 		this.location = location;
 	}
 	
-	public void extendPath(List<RouteSegment> current, List<Route> result) {
-		if(edges.isEmpty()) {
+	public void extendPath(List<RouteSegment> current, List<Route> result, CityNode end) {
+		if(this == end) {
 			result.add(new Route(current));
 		}
 		
 		for(CityEdge e : edges) {
 			List<RouteSegment> next = new ArrayList<RouteSegment>();
 			Collections.copy(next, current);
-			e.getNext().extendPath(next, result);
+			next.addAll(e.getRoute());
+			e.getNext().extendPath(next, result, end);
 		}
 	}
 }

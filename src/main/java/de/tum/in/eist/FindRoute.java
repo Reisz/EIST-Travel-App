@@ -27,17 +27,20 @@ import de.tum.in.eist.algorithm.RouteSegment;
 import de.tum.in.eist.carsharing.FakeCarsharingAPI;
 import de.tum.in.eist.distance.DistanceAPI;
 import de.tum.in.eist.distance.DistanceData;
+import de.tum.in.eist.train.TrainAPI;
 
 @Path("/findRoute")
 public class FindRoute {
 	
 	private final DistanceAPI distanceApi;
 	private final FakeCarsharingAPI carsharingApi;
+	private final TrainAPI trainApi;
 	
 	@Inject
-	public FindRoute(DistanceAPI distanceApi, FakeCarsharingAPI gRentalCarAPI){
+	public FindRoute(DistanceAPI distanceApi, FakeCarsharingAPI gRentalCarAPI, TrainAPI trainApi){
 		this.distanceApi = distanceApi;
 		this.carsharingApi = gRentalCarAPI;
+		this.trainApi = trainApi;
 	}
 	
 	/**
@@ -57,7 +60,7 @@ public class FindRoute {
 			
 		try {
 			DistanceData distanceData = distanceApi.getDistanceData(origin, destination);
-			List<RouteSegment> segments = carsharingApi.getSegments(
+			List<RouteSegment> segments = trainApi.getSegments(
 					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
 					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),
 					new RequestOptions());

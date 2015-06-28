@@ -1,6 +1,7 @@
 package de.tum.in.eist.carsharing.data.directions;
 
-import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import de.tum.in.eist.carsharing.data.GoogleLocationData;
 import de.tum.in.eist.carsharing.data.GoogleNamedIntegerData;
@@ -14,14 +15,7 @@ public class DirectionsStepData {
 	private String html_instructions;
 	private DirectionsPolylineData polyline;
 	private String travel_mode;
-	private String maneuver;
 	
-	public String getManeuver() {
-		return maneuver;
-	}
-	public void setManeuver(String maneuver) {
-		this.maneuver = maneuver;
-	}
 	public GoogleNamedIntegerData getDuration() {
 		return duration;
 	}

@@ -106,11 +106,13 @@ public class AlgorithmManager {
 		//1 waypoint city near origin
 		for(CityNode n : nearOrigin) {
 			connect(origin, n, options);
+			connect(n, dest, options);
 		}
 		
 		//1 waypoint city near destination
 		for(CityNode n : nearDest) {
 			connect(origin, n, options);
+			connect(n, dest, options);
 		}
 		
 		//2 waypoints one near each city
@@ -158,7 +160,7 @@ public class AlgorithmManager {
 	
 	private List<Route> findPaths() {
 		List<Route> result = new ArrayList<Route>();
-		origin.extendPath(new ArrayList<RouteSegment>(), result);
+		origin.extendPath(new ArrayList<RouteSegment>(), result, dest);
 		return result;
 	}
 	
