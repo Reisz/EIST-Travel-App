@@ -64,24 +64,39 @@ public class FindRoute {
 					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
 					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),
 					new RequestOptions());
+
+			List<RouteSegment> segments2 = carsharingApi.getSegments(
+					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
+					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),
+					new RequestOptions());
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			
 			ObjectNode response = mapper.createObjectNode();
 			ArrayNode routes = mapper.createArrayNode();
 			ObjectNode route1 = mapper.createObjectNode();
-			ArrayNode route = mapper.createArrayNode();
+			ArrayNode route1a = mapper.createArrayNode();
+			ObjectNode route2 = mapper.createObjectNode();
+			ArrayNode route2a = mapper.createArrayNode();
 			
 			response.put("status", "ok");
 			response.put("routes", routes);
 			
 			routes.add(route1);
-			route1.put("duration", 0);
-			route1.put("price", 0);
-			route1.put("route", route);
+			route1.put("duration", 1);
+			route1.put("price", 1);
+			route1.put("route", route1a);
+			
+			routes.add(route2);
+			route2.put("duration", 2);
+			route2.put("price", 2);
+			route2.put("route", route2a);
 			
 			for(RouteSegment s : segments) {
-				route.add(s.getJSON(mapper));
+				route1a.add(s.getJSON(mapper));
+			}
+			for(RouteSegment s : segments2) {
+				route2a.add(s.getJSON(mapper));
 			}
 			
 			return Response.ok(getJson(response, mapper)).build();

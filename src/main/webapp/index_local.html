@@ -24,7 +24,7 @@
 <script>
   function serverFindRoute($http, $timeout, append, callback, errorCallback) {
     console.log(append);
-    $http.get("res/test/cs.json").success(callback).error(errorCallback); //needs a local server now (e.g. python -m SimpleHTTPServer 8080)
+    $http.get("res/test/two.json").success(callback).error(errorCallback); //needs a local server now (e.g. python -m SimpleHTTPServer 8080)
   }
 </script>
 </head>
@@ -121,6 +121,19 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div id="options" class="eist-footer">
+      <div ng-repeat="option in data">
+        <button class="eist-footer-pane shadow-3" ng-click="switchTo($index)" ng-class="{primary: $index == 0}">
+          <div style="float: left; font-size:30px; margin-right: 15px;">
+            #{{$index + 1}}
+          </div>
+          <div>
+            Duration: {{option.duration}}</br>
+            Price: {{option.price}}
+          </div>
+        </button>
       </div>
     </div>
 	</div>

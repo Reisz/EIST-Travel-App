@@ -663,3 +663,28 @@ input[type=checkbox]:checked + label:before {
   word-wrap: break-word;
   margin: 5px 0;
 }
+
+.eist-footer {
+  position: fixed;
+  width: 75%;
+  left: 0;
+  bottom: 0;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  background: none;
+}
+
+.eist-footer-pane {
+  padding: 15px;
+  margin-right: 5px;
+  background-color: #fff;
+  width: 200px;
+  text-align: left;
+  border: none;
+  float: left;
+}
+
+.eist-footer-pane.primary {
+  color: #fff;
+  background-color: #3F51B5;
+}
