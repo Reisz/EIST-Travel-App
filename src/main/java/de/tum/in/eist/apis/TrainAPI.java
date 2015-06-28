@@ -110,8 +110,8 @@ public class TrainAPI implements ITrainAPI {
 					+ "," + trainStationDestination.getResults().get(0).getGeometry().getLocation().getLng()
 					+ "&destination=" + destination.commaSeperated() + "&key=" + ApiKey.GOOGLE );
 			response = service.fetch(url);
-			taxiOrigin = mapper.readValue(URLFetchServiceHelper.toString(response), DirectionsData.class);
-			if(taxiOrigin.getRoutes().isEmpty() || taxiOrigin.getRoutes().get(0).getLegs().isEmpty())
+			taxiDestination = mapper.readValue(URLFetchServiceHelper.toString(response), DirectionsData.class);
+			if(taxiDestination.getRoutes().isEmpty() || taxiDestination.getRoutes().get(0).getLegs().isEmpty())
 				return null;
 			}	
 		
