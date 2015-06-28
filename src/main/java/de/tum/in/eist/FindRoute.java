@@ -51,24 +51,27 @@ public class FindRoute {
 	 * @return
 	 */
 	@GET
-	@Path("/{origin}/{destination}/{balance}")
+	@Path("/{origin}/{destination}/{balance}/{carEnabled}/{trainEnabled}/{trainClass}/{planeEnabled}/{planeClass}")
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response findRoute(
 		@PathParam("origin") String origin,
 		@PathParam("destination") String destination,
-		@PathParam("balance") int balance) {
-			
+		@PathParam("balance") int balance,
+		@PathParam("carEnabled") boolean carEnabled,
+		@PathParam("trainEnabled") boolean trainEnabled,
+		@PathParam("trainClass") int trainClass,
+		@PathParam("planeEnabled") boolean planeEnabled,
+		@PathParam("planeClass") int planeClass) {
 		try {
+			RequestOptions options = new RequestOptions(balance, carEnabled, trainEnabled, trainClass, planeEnabled, planeClass);
 			DistanceData distanceData = distanceApi.getDistanceData(origin, destination);
 			List<RouteSegment> segments = trainApi.getSegments(
 					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
-					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),
-					new RequestOptions());
+					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),options);
 
 			List<RouteSegment> segments2 = carsharingApi.getSegments(
 					new Location(distanceData.getStops().get(0).getLatitude(), distanceData.getStops().get(0).getLongitude()), 
-					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),
-					new RequestOptions());
+					new Location(distanceData.getStops().get(1).getLatitude(), distanceData.getStops().get(1).getLongitude()),options);
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			

@@ -2,7 +2,6 @@ var findRoute = angular.module("findRoute", []);
 findRoute.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
 findRoute.controller("routeController", function($scope, $http, $timeout) {
   $scope.car = true;
-  $scope.taxi = true;
   $scope.train = true;
   $scope.plane = true;
   
@@ -27,7 +26,12 @@ findRoute.controller("routeController", function($scope, $http, $timeout) {
     serverFindRoute($http, $timeout,
           "/" + $scope.origin
         + "/" + $scope.destination
-        + "/" + $scope.balance,
+        + "/" + $scope.balance
+        + "/" + $scope.car
+        + "/" + $scope.train
+        + "/" + $scope.trainClass
+        + "/" + $scope.plane
+        + "/" + $scope.planeClass,
       function(data, status, headers, config) {
         //cancelled
         if(!$scope.loading)

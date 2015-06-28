@@ -179,12 +179,31 @@
               <div class="col-xs-9">
                 <input type="checkbox" id="car" ng-model="car"></input>
                 <label for="car" class="checkbox-inline"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE531;</i></label>
-                <input type="checkbox" id="taxi" ng-model="taxi"></input>
-                <label for="taxi" class="checkbox-inline"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE559;</i></label>
                 <input type="checkbox" id="train" ng-model="train"></input>
                 <label for="train" class="checkbox-inline"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE534;</i></label>
+                <div combobox ng-model="trainClass" class="dropdown dropdown-eist" style="display:inline">
+                  <button class="btn btn-default dropdown-toggle dropdown-eist" type="button" id="balance" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Second
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-eist" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">First</a></li>
+                    <li><a class="active" href="#">Second</a></li>
+                  </ul>
+                </div>
                 <input type="checkbox" id="plane" ng-model="plane"></input>
                 <label for="plane" class="checkbox-inline"><i class="material-icons form-icon-eist" aria-hidden="true">&#xE539;</i></label>
+                <div combobox ng-model="planeClass" class="dropdown dropdown-eist" style="display:inline">
+                  <button class="btn btn-default dropdown-toggle dropdown-eist" type="button" id="balance" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Business
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-eist" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">First</a></li>
+                    <li><a class="active" href="#">Business</a></li>
+                    <li><a href="#">Economy</a></li>
+                  </ul>
+                </div>
               </div>
 						</div>
 					</form>

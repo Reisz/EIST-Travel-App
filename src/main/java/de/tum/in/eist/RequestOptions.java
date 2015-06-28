@@ -1,11 +1,9 @@
 package de.tum.in.eist;
 
+
 public class RequestOptions {
 	public enum AlgoType {
 		Fastest, Balanced, Cheapest
-	}
-	public enum CarType{
-		Small, Medium, Large
 	}
 	public enum TrainType{
 		FirstClass, SecondClass
@@ -15,29 +13,59 @@ public class RequestOptions {
 	}
 	
 	private AlgoType algoType;
-	private CarType carType;
 	private TrainType trainType;
 	private FlightType flightType;
 	private int personCount;
 	
-	private boolean carEnabled = true;
-	private boolean trainEnabled = true;
-	private boolean flightEnabled = true;
+	private boolean carEnabled;
+	private boolean trainEnabled;
+	private boolean flightEnabled;
 	
 	private String date;
 	
 	private int maxWalkingDistance = 5000;
+	
+	public RequestOptions(int balance, boolean carEnabled, boolean trainEnabled, int trainClass, boolean planeEnabled, int planeClass) {
+		switch (balance) {
+		case 0:
+			this.algoType = AlgoType.Cheapest;
+			break;
+		case 2:
+			this.algoType = AlgoType.Fastest;
+			break;
+		default:
+			this.algoType = AlgoType.Balanced;
+		}
+		
+		this.carEnabled = carEnabled;
+		
+		this.trainEnabled = trainEnabled;
+		switch(trainClass) {
+		case 0: 
+			this.trainType = TrainType.FirstClass;
+			break;
+		default:
+			this.trainType = TrainType.SecondClass;
+		}
+		
+		this.flightEnabled = planeEnabled;
+		switch (planeClass) {
+		case 0:
+			this.flightType = FlightType.FirstClass;
+			break;
+		case 2:
+			this.flightType = FlightType.Economy;
+			break;
+		default:
+			this.flightType = FlightType.Business;
+		}
+	}
+	
 	public AlgoType getAlgoType() {
 		return algoType;
 	}
 	public void setAlgoType(AlgoType algoType) {
 		this.algoType = algoType;
-	}
-	public CarType getCarType() {
-		return carType;
-	}
-	public void setCarType(CarType carType) {
-		this.carType = carType;
 	}
 	public TrainType getTrainType() {
 		return trainType;
