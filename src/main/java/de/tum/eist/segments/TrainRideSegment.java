@@ -1,15 +1,15 @@
-package de.tum.in.eist.carsharing;
+package de.tum.eist.segments;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import de.tum.in.eist.algorithm.RouteSegment;
-import de.tum.in.eist.carsharing.data.directions.DirectionsData;
+import de.tum.in.eist.data.directions.DirectionsData;
 
-public class FakeCarsharingDrivingSegment implements RouteSegment {
+public class TrainRideSegment implements RouteSegment {
 
 	private DirectionsData data;
-	private String type = "cs-drive";
+	private String type = "train";
 	
 	@Override
 	public int price() {

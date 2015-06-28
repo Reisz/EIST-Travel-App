@@ -32,7 +32,6 @@ public class WebApplication extends GuiceServletContextListener {
        */
       @Override
       protected void configureServlets() {
-        install(new ObjectifyModule());
         install(new JerseyModule());
         install(new AppEngineModule());
 

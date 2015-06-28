@@ -1,6 +1,6 @@
-package de.tum.in.eist.carsharing.data.directions;
+package de.tum.in.eist.data.directions;
 
-import de.tum.in.eist.carsharing.data.GoogleLocationData;
+import de.tum.in.eist.data.google.GoogleLocationData;
 
 public class DirectionsBoundsData {
 

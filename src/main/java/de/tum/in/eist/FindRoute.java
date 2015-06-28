@@ -24,10 +24,10 @@ import org.codehaus.jackson.node.ObjectNode;
 import com.google.gson.JsonObject;
 
 import de.tum.in.eist.algorithm.RouteSegment;
-import de.tum.in.eist.carsharing.FakeCarsharingAPI;
+import de.tum.in.eist.apis.FakeCarsharingAPI;
+import de.tum.in.eist.apis.TrainAPI;
 import de.tum.in.eist.distance.DistanceAPI;
 import de.tum.in.eist.distance.DistanceData;
-import de.tum.in.eist.train.TrainAPI;
 
 @Path("/findRoute")
 public class FindRoute {

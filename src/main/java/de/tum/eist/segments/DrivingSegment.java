@@ -1,19 +1,19 @@
-package de.tum.in.eist.carsharing;
+package de.tum.eist.segments;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import de.tum.in.eist.algorithm.RouteSegment;
-import de.tum.in.eist.carsharing.data.directions.DirectionsData;
+import de.tum.in.eist.data.directions.DirectionsData;
 
-public class FakeCarsharingWalkingSegment implements RouteSegment{
+public class DrivingSegment implements RouteSegment {
 
 	private DirectionsData data;
-	private String type = "cs-walk";
-
+	private String type = "drive";
+	
 	@Override
 	public int price() {
-		return 0;
+		return 15 * data.getRoutes().get(0).getLegs().get(0).getDistance().getValue();
 	}
 
 	@Override
@@ -41,4 +41,5 @@ public class FakeCarsharingWalkingSegment implements RouteSegment{
 	public void setType(String type) {
 		this.type = type;
 	}
+
 }

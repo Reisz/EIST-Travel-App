@@ -24,7 +24,7 @@
 <script>
   function serverFindRoute($http, $timeout, append, callback, errorCallback) {
     console.log(append);
-    $http.get("res/test/cs.json").success(callback).error(errorCallback); //needs a local server now (e.g. python -m SimpleHTTPServer 8080)
+    $http.get("res/test/tr.json").success(callback).error(errorCallback); //needs a local server now (e.g. python -m SimpleHTTPServer 8080)
   }
 </script>
 </head>
@@ -40,8 +40,8 @@
     <div id="result" class="eist-sidebar">
       <div ng-repeat="segment in data" class="eist-sidebar-pane shadow-3">
         <div ng-switch="segment.type">
-        <!--CS-WALK-->
-          <div ng-switch-when="cs-walk">
+        <!--WALK-->
+          <div ng-switch-when="walk">
             <div class="directions-title">
               <a data-toggle="collapse" href="#cs-walk-collapse-{{$index}}" aria-expanded="false" class="collapsed">
                 <i class="material-icons directions-icon-eist" aria-hidden="true">&#xE536;</i> Walk to {{segment.data.routes[0].summary}}&nbsp;<span class="caret"></span>
@@ -58,8 +58,8 @@
               </div>
             </div>
           </div>
-        <!--CS-TAXI-->
-          <div ng-switch-when="cs-taxi">
+        <!--TAXI-->
+          <div ng-switch-when="taxi">
             <div class="directions-title">
               <a data-toggle="collapse" href="#cs-taxi-collapse-{{$index}}" aria-expanded="false" class="collapsed">
                 <i class="material-icons directions-icon-eist" aria-hidden="true">&#xE559;</i> Take a taxi to {{segment.data.routes[0].summary}}&nbsp;<span class="caret"></span>
@@ -80,14 +80,32 @@
           <div ng-switch-when="cs-pickup">
             <div class="directions-title"><i class="material-icons directions-icon-eist" aria-hidden="true">&#xE531;</i> Pick up your Car</div>
           </div>
-        <!--CS-DRIVE-->
-          <div ng-switch-when="cs-drive">
+        <!--DRIVE-->
+          <div ng-switch-when="drive">
             <div class="directions-title">
               <a data-toggle="collapse" href="#cs-drive-collapse-{{$index}}" aria-expanded="false" class="collapsed">
                 <i class="material-icons directions-icon-eist" aria-hidden="true">&#xE531;</i> Drive to {{segment.data.routes[0].summary}}&nbsp;<span class="caret"></span>
               </a>
             </div>
             <div id="cs-drive-collapse-{{$index}}" class="collapse directions-content">
+              <div ng-repeat="leg in segment.data.routes[0].legs">
+                <span class="directions-info-eist">Distance: {{leg.distance.text}} &nbsp; Duration: {{leg.duration.text}}</span>
+                <ol>
+                  <li ng-repeat="step in leg.steps">
+                    <div class="directions-instruction-eist" ng-bind-html="step.html_instructions | unsafe"></div>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        <!--TRAIN-->
+          <div ng-switch-when="train">
+            <div class="directions-title">
+              <a data-toggle="collapse" href="#cs-train-collapse-{{$index}}" aria-expanded="false" class="collapsed">
+                <i class="material-icons directions-icon-eist" aria-hidden="true">&#xE534;</i> Take the Train to {{segment.data.routes[0].summary}}&nbsp;<span class="caret"></span>
+              </a>
+            </div>
+            <div id="cs-train-collapse-{{$index}}" class="collapse directions-content">
               <div ng-repeat="leg in segment.data.routes[0].legs">
                 <span class="directions-info-eist">Distance: {{leg.distance.text}} &nbsp; Duration: {{leg.duration.text}}</span>
                 <ol>

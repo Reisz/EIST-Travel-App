@@ -1,11 +1,11 @@
-package de.tum.in.eist.carsharing;
+package de.tum.eist.segments;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import de.tum.in.eist.algorithm.RouteSegment;
 
-public class FakeCarsharingPickupSegment implements RouteSegment {
+public class CarsharingPickupSegment implements RouteSegment {
 	
 	private String type = "cs-pickup";
 	

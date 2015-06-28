@@ -1,4 +1,4 @@
-package de.tum.in.eist.train;
+package de.tum.in.eist.apis;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,14 +11,17 @@ import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.inject.Inject;
 
+import de.tum.eist.segments.TaxiSegment;
+import de.tum.eist.segments.WalkingSegment;
+import de.tum.eist.segments.TrainRideSegment;
 import de.tum.in.eist.ApiKey;
 import de.tum.in.eist.Location;
 import de.tum.in.eist.RequestOptions;
 import de.tum.in.eist.URLFetchServiceHelper;
 import de.tum.in.eist.algorithm.ITrainAPI;
 import de.tum.in.eist.algorithm.RouteSegment;
-import de.tum.in.eist.carsharing.data.directions.DirectionsData;
-import de.tum.in.eist.carsharing.data.places.PlacesData;
+import de.tum.in.eist.data.directions.DirectionsData;
+import de.tum.in.eist.data.places.PlacesData;
 
 public class TrainAPI implements ITrainAPI {
 
@@ -120,11 +123,11 @@ public class TrainAPI implements ITrainAPI {
 		ArrayList<RouteSegment> result = new ArrayList<RouteSegment>();
 		
 		if(taxiOrigin == null){
-			TrainWalkingSegment wOrSegment = new TrainWalkingSegment();
+			WalkingSegment wOrSegment = new WalkingSegment();
 			wOrSegment.setData(walkOrigin);
 			result.add(wOrSegment);
 		} else {
-			TrainTaxiSegment tOrSegment = new TrainTaxiSegment();
+			TaxiSegment tOrSegment = new TaxiSegment();
 			tOrSegment.setData(taxiOrigin);
 			result.add(tOrSegment);
 		}
@@ -133,11 +136,11 @@ public class TrainAPI implements ITrainAPI {
 		result.add(trSegment);
 		
 		if(taxiDestination == null){
-			TrainWalkingSegment wDeSegment = new TrainWalkingSegment();
+			WalkingSegment wDeSegment = new WalkingSegment();
 			wDeSegment.setData(walkDestination);
 			result.add(wDeSegment);
 		} else {
-			TrainTaxiSegment tDeSegment = new TrainTaxiSegment();
+			TaxiSegment tDeSegment = new TaxiSegment();
 			tDeSegment.setData(taxiDestination);
 			result.add(tDeSegment);
 		}

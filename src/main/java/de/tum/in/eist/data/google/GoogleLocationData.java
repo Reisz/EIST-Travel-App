@@ -1,4 +1,4 @@
-package de.tum.in.eist.carsharing.data;
+package de.tum.in.eist.data.google;
 
 public class GoogleLocationData {
 	private double lat;

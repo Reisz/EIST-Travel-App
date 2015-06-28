@@ -1,4 +1,4 @@
-package de.tum.in.eist.carsharing.data.places;
+package de.tum.in.eist.data.places;
 
 import java.util.List;
 import java.util.ArrayList;

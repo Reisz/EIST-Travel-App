@@ -1,19 +1,22 @@
-package de.tum.in.eist.train;
+package de.tum.eist.segments;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import de.tum.in.eist.algorithm.RouteSegment;
-import de.tum.in.eist.carsharing.data.directions.DirectionsData;
+import de.tum.in.eist.data.directions.DirectionsData;
 
-public class TrainRideSegment implements RouteSegment {
+public class TaxiSegment implements RouteSegment {
 
 	private DirectionsData data;
-	private String type = "cs-train";
+	private String type = "taxi";
 	
 	@Override
 	public int price() {
-		return 15 * data.getRoutes().get(0).getLegs().get(0).getDistance().getValue();
+		int distance = data.getRoutes().get(0).getLegs().get(0).getDistance().getValue() / 1000;
+		return 350 //boooking
+			+ distance * 150 //fare
+			+ distance * 15; // 10% tip
 	}
 
 	@Override

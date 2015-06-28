@@ -1,8 +1,8 @@
-package de.tum.in.eist.carsharing.data.places;
+package de.tum.in.eist.data.places;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import de.tum.in.eist.carsharing.data.GoogleLocationData;
+import de.tum.in.eist.data.google.GoogleLocationData;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
