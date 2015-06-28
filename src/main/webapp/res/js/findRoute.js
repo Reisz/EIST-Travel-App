@@ -1,4 +1,5 @@
 var findRoute = angular.module("findRoute", []);
+findRoute.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
 findRoute.controller("routeController", function($scope, $http, $timeout) {
   $scope.car = true;
   $scope.taxi = true;

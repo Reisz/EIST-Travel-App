@@ -114,8 +114,12 @@
 	border: none;
 }
 
-:focus, a:focus  {
+:focus, a:focus , a:hover {
 	outline: none;
+}
+
+a:focus , a:hover {
+  text-decoration: none;
 }
 
 body {
@@ -627,4 +631,32 @@ input[type=checkbox]:checked + label:before {
   padding-top: 20px;
   margin-bottom: -10px;
   margin-right: -10px;
+}
+
+.directions-icon-eist {
+  color: #3F51B5;
+  position: relative;
+  top: 5px;
+}
+
+.directions-title {
+  font-size: 18px;
+}
+
+.directions-title a {
+  color: rgba(0,0,0,0.87);
+}
+
+.directions-content {
+  padding-left: 10px;
+}
+
+.directions-info-eist {
+  font-size: 16px;
+  color: rgba(0,0,0,0.54);
+}
+
+.directions-instruction-eist {
+  word-wrap: break-word;
+  margin: 5px 0;
 }
