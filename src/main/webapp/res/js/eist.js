@@ -9,7 +9,7 @@ L
 
 $(document).ready(function() {
 	resizeMap();
-	map.setView([ 48.137222222222, 11.575555555556 ], 13);
+	map.setView([48.264679, 11.6713], 13).locate({setView: true});
 });
 window.onresize = function(event) {
 	resizeMap();
